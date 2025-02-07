@@ -1,4 +1,4 @@
-package scoreboard;
+package com.sportradar.scoreboard;
 
 import io.cucumber.java.en.*;
 
