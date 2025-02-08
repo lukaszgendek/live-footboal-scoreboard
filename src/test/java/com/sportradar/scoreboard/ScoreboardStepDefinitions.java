@@ -160,4 +160,8 @@ public class ScoreboardStepDefinitions {
     }
 
 
+    @Then("the summary should be empty")
+    public void theSummaryShouldBeEmpty() {
+        assertTrue(summary.isEmpty());
+    }
 }
