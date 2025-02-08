@@ -34,10 +34,9 @@ public class Scoreboard {
         String key = generateKey(homeTeam, awayTeam);
         Match match = matches.get(key);
         if (match == null) {
-            throw new IllegalArgumentException("Match does not exist " + homeTeam + " vs " + awayTeam);
-        } else {
-            matches.remove(key);
+            throw new IllegalArgumentException("Match between these teams does not exist.");
         }
+        matches.remove(key);
     }
 
     public List<Match> getSummary() {

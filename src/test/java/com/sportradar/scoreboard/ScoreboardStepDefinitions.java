@@ -57,7 +57,11 @@ public class ScoreboardStepDefinitions {
 
     @When("I finish the match between {string} and {string}")
     public void i_finish_the_match_between_and(String homeTeam, String awayTeam) {
-        scoreboard.finishMatch(homeTeam, awayTeam);
+        try {
+            scoreboard.finishMatch(homeTeam, awayTeam);
+        } catch (IllegalArgumentException e) {
+            exception = e;
+        }
     }
 
     @Then("the scoreboard should be empty")
