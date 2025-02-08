@@ -27,7 +27,8 @@ The application is structured into three main components:
 
 # Acceptance Criteria
 
-<<<<<<< HEAD
+# Acceptance Criteria
+
 | Scenario | Initial Scenario | Action | Expected Result |
 |----------|------------------|--------|-----------------|
 | Start a new match | Empty scoreboard | Start a new match with home team ```Mexico``` and away team ```Canada``` | The scoreboard should contain one match, with the score ```Mexico``` ```0``` - ```Canada``` ```0```. |
@@ -45,13 +46,3 @@ The application is structured into three main components:
 | Handle large number of matches | Empty scoreboard | Start and update scores for a large number of matches (e.g., 10,000 matches) | The scoreboard should handle all operations without performance issues or errors. |
 | Perform operations on empty scoreboard | Empty scoreboard | Try to finish or update a match on an empty scoreboard | Errors should be thrown indicating that the match between the specified teams does not exist. |
 | Concurrent operations | Empty scoreboard | Perform multiple operations (start, update, finish) on matches concurrently | The scoreboard should handle all operations correctly and maintain data integrity. |
-=======
-| Initial Scenario | Action | Expected Result |
-|------------------|--------|-----------------|
-| Empty scoreboard | Start a new match with home team ```Mexico``` and away team ```Canada``` | The scoreboard should contain one match, with the score ```Mexico``` ```0``` - ```Canada``` ```0```. |
-| Scoreboard with one match (```Mexico``` ```0``` - ```Canada``` ```0```) | Update the score of the match to ```Mexico 3 - Canada 2``` | The scoreboard should show the updated score ```Mexico 3 - Canada 2```. |
-| Scoreboard with one match (```Mexico``` ```3``` - ```Canada``` ```2```) | Finish the match | The scoreboard should be empty. |
-| Scoreboard with multiple matches (e.g., ```Mexico``` ```0``` - ```Canada``` ```5```, ```Spain``` ```10``` - ```Brasil``` ```2```) | Get a summary of matches in progress | The summary should list matches ordered by total score in descending order, with ties broken by most recently started match. |
-| Scoreboard with multiple matches (e.g., ```Mexico``` ```0``` - ```Canada``` ```5```, ```Spain``` ```10``` - ```Brasil``` ```2```, ```Germany``` ```2``` - ```France``` ```2```) | Start a new match with home team ```Uruguay``` and away team ```Italy``` and update the score to ```Uruguay``` ```6``` - ```Italy``` ```6``` | The scoreboard should list the matches with ```Uruguay``` ```6``` - ```Italy``` ```6``` at the top, followed by ```Spain``` ```10``` - ```Brasil``` ```2```, ```Mexico``` ```0``` - ```Canada``` ```5```, and ```Germany``` ```2``` - ```France``` ```2```. |
-| Scoreboard with multiple matches (e.g., ```Uruguay``` ```6``` - ```Italy``` ```6```, ```Spain``` ```10``` - ```Brasil``` ```2```) | Finish the match between ```Spain``` and ```Brazil``` | The scoreboard should list the remaining match ```Uruguay``` ```6``` - ```Italy``` ```6```. |
->>>>>>> ec83d285cd226eba1e80f5342834ef2fac3c2172
