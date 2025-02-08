@@ -12,7 +12,7 @@ Feature: Live Football World Cup Scoreboard
 
   Scenario: Finish an ongoing match
     Given a scoreboard with one match "Mexico" 3 - "Canada" 2
-    When I finish the match with home team "Mexico" and away team "Canada"
+    When I finish the match between "Mexico" and "Canada"
     Then the scoreboard should be empty
 
   Scenario: Get a summary of matches in progress
@@ -38,3 +38,13 @@ Feature: Live Football World Cup Scoreboard
       | Spain    | Brazil   | 10        | 2         |
       | Mexico   | Canada   | 0         | 5         |
       | Germany  | France   | 2         | 2         |
+
+  Scenario: Finish a specific match
+    Given a scoreboard with multiple matches
+      | homeTeam | awayTeam | homeScore | awayScore |
+      | Uruguay  | Italy    | 6         | 6         |
+      | Spain    | Brazil   | 10        | 2         |
+    When I finish the match between "Spain" and "Brazil"
+    Then the summary should list the matches in the following order
+      | homeTeam | awayTeam | homeScore | awayScore |
+      | Uruguay  | Italy    | 6         | 6         |

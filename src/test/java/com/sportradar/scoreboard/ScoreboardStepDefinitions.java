@@ -47,8 +47,8 @@ public class ScoreboardStepDefinitions {
         scoreboard.updateScore(homeTeam, homeScore, awayTeam, awayScore);
     }
 
-    @When("I finish the match with home team {string} and away team {string}")
-    public void i_finish_the_match_with_home_team_and_away_team(String homeTeam, String awayTeam) {
+    @When("I finish the match between {string} and {string}")
+    public void i_finish_the_match_between_and(String homeTeam, String awayTeam) {
         scoreboard.finishMatch(homeTeam, awayTeam);
     }
 
