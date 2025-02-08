@@ -110,3 +110,10 @@ Feature: Live Football World Cup Scoreboard
     Then the summary should be empty
     And no errors should occur
 
+  Scenario: Perform operations on an empty scoreboard
+    Given an empty scoreboard
+    When I perform operations on the scoreboard
+      | operation    | homeTeam | awayTeam | homeScore | awayScore |
+      | finishMatch  | Mexico   | Canada   |           |           |
+      | updateScore  | Mexico   | Canada   | 3         | 2         |
+    Then an error should be raised with the message "Match between these teams does not exist."
