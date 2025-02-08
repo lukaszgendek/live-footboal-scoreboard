@@ -54,3 +54,9 @@ Feature: Live Football World Cup Scoreboard
     Given a scoreboard with one match "Mexico" 0 - "Canada" 0
     When I start a new match with home team "Mexico" and away team "Canada"
     Then an error should be raised with the message "Match between these teams is already in progress."
+
+  Scenario: Update the score of a non-existent match
+    Given an empty scoreboard
+    When I update the score of the match to "Mexico" 3 - "Canada" 2
+    Then an error should be raised with the message "Match between these teams does not exist."
+
