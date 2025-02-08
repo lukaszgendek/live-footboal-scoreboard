@@ -60,3 +60,7 @@ Feature: Live Football World Cup Scoreboard
     When I update the score of the match to "Mexico" 3 - "Canada" 2
     Then an error should be raised with the message "Match between these teams does not exist."
 
+  Scenario: Finish a non-existent match
+    Given an empty scoreboard
+    When I finish the match between "Mexico" and "Canada"
+    Then an error should be raised with the message "Match between these teams does not exist."
