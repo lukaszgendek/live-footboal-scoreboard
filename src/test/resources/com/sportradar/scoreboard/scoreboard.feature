@@ -23,3 +23,18 @@ Feature: Live Football World Cup Scoreboard
     When I get a summary of matches in progress
     Then the summary should list matches ordered by total score in descending order
     And ties should be broken by the most recently started match
+
+  Scenario: Start a new match and update score
+    Given a scoreboard with multiple matches
+      | homeTeam | awayTeam | homeScore | awayScore |
+      | Mexico   | Canada   | 0         | 5         |
+      | Spain    | Brazil   | 10        | 2         |
+      | Germany  | France   | 2         | 2         |
+    When I start a new match with home team "Uruguay" and away team "Italy"
+    And I update the score of the match to "Uruguay" 6 - "Italy" 6
+    Then the scoreboard should list the matches in the following order
+      | homeTeam | awayTeam | homeScore | awayScore |
+      | Uruguay  | Italy    | 6         | 6         |
+      | Spain    | Brazil   | 10        | 2         |
+      | Mexico   | Canada   | 0         | 5         |
+      | Germany  | France   | 2         | 2         |
