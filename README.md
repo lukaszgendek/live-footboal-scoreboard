@@ -62,7 +62,7 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
 
 ### Acceptance Criteria
 
-The following table [table](./acceptance_criteria.md) lists the acceptance criteria used for developing the application:
+The following table [table](./acceptance_criteria.md) lists the acceptance criteria used for developing the application.
 
 ## How to Start
 ### Prerequisites
