@@ -10,6 +10,7 @@ public class Scoreboard {
     private final LinkedHashMap<String, Match> matches = new LinkedHashMap<>();
 
     public void startMatch(String homeTeam, String awayTeam) {
+        validateTeamNames(homeTeam, awayTeam);
         String key = generateKey(homeTeam, awayTeam);
         if (matches.containsKey(key)) {
             throw new IllegalArgumentException("Match between these teams is already in progress.");
@@ -22,6 +23,7 @@ public class Scoreboard {
     }
 
     public void updateScore(String homeTeam, int homeScore, String awayTeam, int awayScore) {
+        validateTeamNames(homeTeam, awayTeam);
         String key = generateKey(homeTeam, awayTeam);
         Match match = matches.get(key);
         if (match == null) {
@@ -31,6 +33,7 @@ public class Scoreboard {
     }
 
     public void finishMatch(String homeTeam, String awayTeam) {
+        validateTeamNames(homeTeam, awayTeam);
         String key = generateKey(homeTeam, awayTeam);
         Match match = matches.get(key);
         if (match == null) {
@@ -56,5 +59,11 @@ public class Scoreboard {
 
     private static String generateKey(String homeTeam, String awayTeam) {
         return homeTeam + SEPARATOR + awayTeam;
+    }
+
+    private void validateTeamNames(String homeTeam, String awayTeam) {
+        if (homeTeam == null || awayTeam == null || homeTeam.trim().isEmpty() || awayTeam.trim().isEmpty()) {
+            throw new IllegalArgumentException("Team names must not be null or empty.");
+        }
     }
 }

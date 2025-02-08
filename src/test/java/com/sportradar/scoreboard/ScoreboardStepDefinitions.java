@@ -28,6 +28,16 @@ public class ScoreboardStepDefinitions {
         }
     }
 
+    @When("I start a new match with home team null and away team {string}")
+    public void i_start_a_new_match_with_home_team_null_and_away_team(String awayTeam) {
+        i_start_a_new_match_with_home_team_and_away_team(null, awayTeam);
+    }
+
+    @When("I start a new match with home team {string} and away team null")
+    public void i_start_a_new_match_with_home_team_and_away_team_null(String homeTeam) {
+        i_start_a_new_match_with_home_team_and_away_team(homeTeam, null);
+    }
+
     @Then("the scoreboard should contain one match with the score {string} {int} - {string} {int}")
     public void the_scoreboard_should_contain_one_match_with_the_score(String homeTeam, int homeScore, String awayTeam, int awayScore) {
         List<Match> matches = scoreboard.getMatches();
