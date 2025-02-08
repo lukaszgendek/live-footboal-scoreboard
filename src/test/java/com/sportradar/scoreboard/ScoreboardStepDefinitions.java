@@ -7,12 +7,12 @@ import io.cucumber.java.en.When;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreboardStepDefinitions {
     private Scoreboard scoreboard;
     private List<Match> summary;
+    private Exception exception;
 
     @Given("an empty scoreboard")
     public void an_empty_scoreboard() {
@@ -21,7 +21,12 @@ public class ScoreboardStepDefinitions {
 
     @When("I start a new match with home team {string} and away team {string}")
     public void i_start_a_new_match_with_home_team_and_away_team(String homeTeam, String awayTeam) {
-        scoreboard.startMatch(homeTeam, awayTeam);
+        try {
+            scoreboard.startMatch(homeTeam, awayTeam);
+        } catch (IllegalArgumentException e) {
+            exception = e;
+        }
+
     }
 
     @Then("the scoreboard should contain one match with the score {string} {int} - {string} {int}")
@@ -109,6 +114,12 @@ public class ScoreboardStepDefinitions {
             assertEquals(awayScore, summary.get(i).getAwayScore());
             i++;
         }
+    }
+
+    @Then("an error should be raised with the message {string}")
+    public void an_error_should_be_raised_with_the_message(String expectedMessage) {
+        assertNotNull(exception);
+        assertEquals(expectedMessage, exception.getMessage());
     }
 
 }
