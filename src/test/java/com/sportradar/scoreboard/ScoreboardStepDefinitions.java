@@ -96,6 +96,7 @@ public class ScoreboardStepDefinitions {
     public void i_get_a_summary_of_matches_in_progress() {
         summary = scoreboard.getSummary();
     }
+
     @Then("the summary should list matches ordered by total score in descending order")
     public void the_summary_should_list_matches_ordered_by_total_score_in_descending_order() {
         for (int i = 1; i < summary.size(); i++) {
@@ -141,19 +142,22 @@ public class ScoreboardStepDefinitions {
 
     @When("I start and finish matches in rapid succession")
     public void i_start_and_finish_matches_in_rapid_succession(io.cucumber.datatable.DataTable dataTable) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
-        throw new io.cucumber.java.PendingException();
+        try {
+            for (Map<String, String> entry : dataTable.entries()) {
+                String homeTeam = entry.get("homeTeam");
+                String awayTeam = entry.get("awayTeam");
+                scoreboard.startMatch(homeTeam, awayTeam);
+                scoreboard.finishMatch(homeTeam, awayTeam);
+            }
+        } catch (Exception e) {
+            exception = e;
+        }
     }
+
     @Then("no errors should occur")
     public void no_errors_should_occur() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        assertNull(exception);
     }
+
 
 }
