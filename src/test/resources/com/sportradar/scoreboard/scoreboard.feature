@@ -50,3 +50,7 @@ Feature: Live Football World Cup Scoreboard
       | Uruguay  | Italy    | 6         | 6         |
 
 # Edge cases
+  Scenario: Start a match with the same teams that already have an ongoing match
+    Given a scoreboard with one match "Mexico" 0 - "Canada" 0
+    When I start a new match with home team "Mexico" and away team "Canada"
+    Then an error should be raised with the message "Match between these teams is already in progress."
