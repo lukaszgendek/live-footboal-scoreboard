@@ -10,7 +10,7 @@ public class Scoreboard {
     private final LinkedHashMap<String, Match> matches = new LinkedHashMap<>();
 
     public void startMatch(String homeTeam, String awayTeam) {
-        matches.put(getKey(homeTeam, awayTeam), new Match(homeTeam,  0, awayTeam, 0));
+        matches.put(generateKey(homeTeam, awayTeam), new Match(homeTeam,  0, awayTeam, 0));
     }
 
     public List<Match> getMatches() {
@@ -18,7 +18,7 @@ public class Scoreboard {
     }
 
     public void updateScore(String homeTeam, int homeScore, String awayTeam, int awayScore) {
-        String key = getKey(homeTeam, awayTeam);
+        String key = generateKey(homeTeam, awayTeam);
         Match match = matches.get(key);
         if (match == null) {
             throw new IllegalArgumentException("Match does not exist " + homeTeam + " vs " + awayTeam);
@@ -27,12 +27,8 @@ public class Scoreboard {
         }
     }
 
-    private static String getKey(String homeTeam, String awayTeam) {
-        return homeTeam + SEPARATOR + awayTeam;
-    }
-
     public void finishMatch(String homeTeam, String awayTeam) {
-        String key = getKey(homeTeam, awayTeam);
+        String key = generateKey(homeTeam, awayTeam);
         Match match = matches.get(key);
         if (match == null) {
             throw new IllegalArgumentException("Match does not exist " + homeTeam + " vs " + awayTeam);
@@ -46,6 +42,7 @@ public class Scoreboard {
                 .sorted(Comparator.comparingInt(Match::getTotalScore))
                 .collect(
                         collectingAndThen(
+                                // Since LinkedHashMap maintains insertion order, we only need to reverse the list
                                 Collectors.toList(),
                                 l -> {
                                     Collections.reverse(l);
@@ -53,5 +50,9 @@ public class Scoreboard {
                                 }
                         )
                 );
+    }
+
+    private static String generateKey(String homeTeam, String awayTeam) {
+        return homeTeam + SEPARATOR + awayTeam;
     }
 }
