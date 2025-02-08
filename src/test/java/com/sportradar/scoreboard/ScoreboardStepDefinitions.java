@@ -26,11 +26,24 @@ public class ScoreboardStepDefinitions {
         List<Match> matches = scoreboard.getSummary();
         assertEquals(1, matches.size());
         Match first = matches.get(0);
-        String homeTeam = first.getHomeTeam();
-        String awayTeam = first.getAwayTeam();
-        int homeScore = first.getHomeScore();
-        int awayScore = first.getAwayScore();
-        assertEquals(score,homeTeam + " " + homeScore + " - " + awayTeam + " " + awayScore);
+        assertEquals(score, first.getHomeTeam() + " " + first.getHomeScore() +
+                " - " + first.getAwayTeam() + " " + first.getAwayScore());
+    }
+
+    @Given("a scoreboard with one match {string}")
+    public void a_scoreboard_with_one_match(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @When("I update the score of the match to {string}")
+    public void i_update_the_score_of_the_match_to(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("the scoreboard should show the updated score {string}")
+    public void the_scoreboard_should_show_the_updated_score(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
 
 }

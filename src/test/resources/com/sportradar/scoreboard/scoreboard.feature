@@ -5,3 +5,7 @@ Feature: Live Football World Cup Scoreboard
     When I start a new match with home team "Mexico" and away team "Canada"
     Then the scoreboard should contain one match with the score "Mexico 0 - Canada 0"
 
+  Scenario: Update the score of an ongoing match
+    Given a scoreboard with one match "Mexico 0 - Canada 0"
+    When I update the score of the match to "Mexico 3 - Canada 2"
+    Then the scoreboard should show the updated score "Mexico 3 - Canada 2"
