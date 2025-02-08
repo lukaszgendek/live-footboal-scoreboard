@@ -3,11 +3,11 @@ package com.sportradar.scoreboard;
 public class Match {
 
     private final String homeTeam;
-    private final String awayTeam;
     private final int homeScore;
+    private final String awayTeam;
     private final int awayScore;
 
-    public Match(String homeTeam, String awayTeam, int homeScore, int awayScore) {
+    public Match(String homeTeam, int homeScore, String awayTeam, int awayScore) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = homeScore;
@@ -18,16 +18,27 @@ public class Match {
         return homeTeam;
     }
 
-    public String getAwayTeam() {
-        return awayTeam;
-    }
-
     public int getHomeScore() {
         return homeScore;
+    }
+
+    public String getAwayTeam() {
+        return awayTeam;
     }
 
     public int getAwayScore() {
         return awayScore;
     }
 
+    public Match withHomeScore(int homeScore) {
+        if (homeScore == this.homeScore)
+            return this;
+        return new Match(this.homeTeam, homeScore, this.awayTeam, this.awayScore);
+    }
+
+    public Match withAwayScore(int awayScore) {
+        if (awayScore == this.awayScore)
+            return this;
+        return new Match(this.homeTeam, this.homeScore, this.awayTeam, awayScore);
+    }
 }

@@ -21,29 +21,26 @@ public class ScoreboardStepDefinitions {
         scoreboard.startMatch(homeTeam, awayTeam);
     }
 
-    @Then("the scoreboard should contain one match with the score {string}")
-    public void the_scoreboard_should_contain_one_match_with_the_score(String score) {
-        List<Match> matches = scoreboard.getSummary();
+    @Then("the scoreboard should contain one match with the score {string} {int} - {string} {int}")
+    public void the_scoreboard_should_contain_one_match_with_the_score(String homeTeam, int homeScore, String awayTeam, int awayScore) {
+        List<Match> matches = scoreboard.getMatches();
         assertEquals(1, matches.size());
         Match first = matches.get(0);
-        assertEquals(score, first.getHomeTeam() + " " + first.getHomeScore() +
-                " - " + first.getAwayTeam() + " " + first.getAwayScore());
+        assertEquals(first.getHomeTeam(), homeTeam);
+        assertEquals(first.getHomeScore(), homeScore);
+        assertEquals(first.getAwayTeam(), awayTeam);
+        assertEquals(first.getAwayScore(), awayScore);
     }
 
-    @Given("a scoreboard with one match {string}")
-    public void a_scoreboard_with_one_match(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Given("a scoreboard with one match {string} {int} - {string} {int}")
+    public void a_scoreboard_with_one_match(String homeTeam, int homeScore, String awayTeam, int awayScore) {
+        scoreboard = new Scoreboard();
+        scoreboard.startMatch(homeTeam, awayTeam);
     }
-    @When("I update the score of the match to {string}")
-    public void i_update_the_score_of_the_match_to(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Then("the scoreboard should show the updated score {string}")
-    public void the_scoreboard_should_show_the_updated_score(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @When("I update the score of the match to {string} {int} - {string} {int}")
+    public void i_update_the_score_of_the_match_to(String homeTeam, int homeScore, String awayTeam, int awayScore) {
+        scoreboard.updateMatch(homeTeam, homeScore, awayTeam, awayScore);
     }
 
 }
