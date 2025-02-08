@@ -139,4 +139,21 @@ public class ScoreboardStepDefinitions {
         assertEquals(expectedMessage, exception.getMessage());
     }
 
+    @When("I start and finish matches in rapid succession")
+    public void i_start_and_finish_matches_in_rapid_succession(io.cucumber.datatable.DataTable dataTable) {
+        // Write code here that turns the phrase above into concrete actions
+        // For automatic transformation, change DataTable to one of
+        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+        // Double, Byte, Short, Long, BigInteger or BigDecimal.
+        //
+        // For other transformations you can register a DataTableType.
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("no errors should occur")
+    public void no_errors_should_occur() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
 }

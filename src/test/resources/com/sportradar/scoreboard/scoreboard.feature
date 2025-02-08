@@ -78,3 +78,13 @@ Feature: Live Football World Cup Scoreboard
 
     When I start a new match with home team "Mexico" and away team null
     Then an error should be raised with the message "Team names must not be null or empty."
+
+  Scenario: Starting and finishing matches in rapid succession
+    Given an empty scoreboard
+    When I start and finish matches in rapid succession
+      | homeTeam | awayTeam |
+      | Mexico   | Canada   |
+      | Spain    | Brazil   |
+      | Germany  | France   |
+    Then the scoreboard should be empty
+    And no errors should occur
