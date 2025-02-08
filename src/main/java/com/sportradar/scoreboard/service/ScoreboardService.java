@@ -1,4 +1,7 @@
-package com.sportradar.scoreboard;
+package com.sportradar.scoreboard.service;
+
+import com.sportradar.scoreboard.model.Match;
+import com.sportradar.scoreboard.model.MatchMap;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -7,7 +10,7 @@ import static java.util.stream.Collectors.collectingAndThen;
 
 public class ScoreboardService {
     private static final String SEPARATOR = "|";
-    private final SynchronizedMatchMap map = new SynchronizedMatchMap();
+    private final MatchMap map = new MatchMap();
 
     public void startMatch(String homeTeam, String awayTeam) {
         validateTeamNames(homeTeam, awayTeam);

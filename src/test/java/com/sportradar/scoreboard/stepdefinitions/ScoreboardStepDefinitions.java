@@ -1,5 +1,7 @@
-package com.sportradar.scoreboard;
+package com.sportradar.scoreboard.stepdefinitions;
 
+import com.sportradar.scoreboard.model.Match;
+import com.sportradar.scoreboard.service.ScoreboardService;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

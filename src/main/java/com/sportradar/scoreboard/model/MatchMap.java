@@ -1,10 +1,10 @@
-package com.sportradar.scoreboard;
+package com.sportradar.scoreboard.model;
 
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class SynchronizedMatchMap {
+public class MatchMap {
     private final LinkedHashMap<String, Match> matches = new LinkedHashMap<>();
 
     public synchronized void put(String key, Function<Match, Match> validatorAndCreator) {

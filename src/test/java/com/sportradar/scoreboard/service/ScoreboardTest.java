@@ -1,4 +1,4 @@
-package com.sportradar.scoreboard;
+package com.sportradar.scoreboard.service;
 
 import org.junit.jupiter.api.Test;
 
