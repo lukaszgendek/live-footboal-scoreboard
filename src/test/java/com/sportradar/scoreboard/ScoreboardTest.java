@@ -28,6 +28,7 @@ public class ScoreboardTest {
                     String awayTeam = "Team" + (index + 1);
                     scoreboard.startMatch(homeTeam, awayTeam);
                     scoreboard.updateScore(homeTeam, index % 10, awayTeam, (index + 1) % 10);
+                    scoreboard.getSummary(); // Include read operation
                     scoreboard.finishMatch(homeTeam, awayTeam);
                 } catch (Exception e) {
                     exceptionRef.set(e);
