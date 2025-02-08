@@ -1,12 +1,25 @@
-# Description
-This project is a simple library that manages a live football World Cup scoreboard. It allows you to start a new match, update the score, finish a match, and get a summary of matches in progress ordered by their total score.
+# Scoreboard Application
 
-# Features
+## Description
+The Scoreboard Application is designed to manage and display the scores of various matches. It allows you to start a new match, update scores, finish a match, and get a summary of all ongoing matches. The application is designed with thread safety in mind to handle concurrent operations seamlessly.
 
-1. Start a new match with an initial score of 0-0.
-2. Update the score of an ongoing match.
-3. Finish a match and remove it from the scoreboard.
-4. Get a summary of matches in progress, ordered by total score. Matches with the same total score are ordered by the most recently started match.
+## Features
+- Start a new match
+- Update scores of an ongoing match
+- Finish an ongoing match
+- Get a summary of all ongoing matches, sorted by total score in descending order
+
+## Design
+The application is structured into two main components:
+1. **Model**: Contains the data structures for matches and a thread-safe map to manage them.
+2. **Service**: Contains the business logic for managing matches.
+
+### Model
+- **Match**: Represents a match between two teams with their respective scores.
+- **MatchMap**: A thread-safe map that manages matches. It ensures that all operations on the map are synchronized.
+
+### Service
+- **ScoreboardService**: Contains the business logic for creating, updating, and finishing matches. It uses `MatchMap` to manage the matches.
 
 # Acceptance Criteria
 
