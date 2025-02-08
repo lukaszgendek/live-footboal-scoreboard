@@ -41,4 +41,8 @@ public class Match {
             return this;
         return new Match(this.homeTeam, this.homeScore, this.awayTeam, awayScore);
     }
+
+    public int getTotalScore() {
+        return this.homeScore + this.awayScore;
+    }
 }

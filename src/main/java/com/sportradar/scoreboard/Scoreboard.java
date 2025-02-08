@@ -1,8 +1,9 @@
 package com.sportradar.scoreboard;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
 
 public class Scoreboard {
     private static final String SEPARATOR = "|";
@@ -16,7 +17,7 @@ public class Scoreboard {
         return new ArrayList<>(matches.values());
     }
 
-    public void updateMatch(String homeTeam, int homeScore, String awayTeam, int awayScore) {
+    public void updateScore(String homeTeam, int homeScore, String awayTeam, int awayScore) {
         String key = getKey(homeTeam, awayTeam);
         Match match = matches.get(key);
         if (match == null) {
@@ -38,5 +39,19 @@ public class Scoreboard {
         } else {
             matches.remove(key);
         }
+    }
+
+    public List<Match> getSummary() {
+        return getMatches().stream()
+                .sorted(Comparator.comparingInt(m -> m.getHomeScore() + m.getAwayScore()))
+                .collect(
+                        collectingAndThen(
+                                Collectors.toList(),
+                                l -> {
+                                    Collections.reverse(l);
+                                    return l;
+                                }
+                        )
+                );
     }
 }
