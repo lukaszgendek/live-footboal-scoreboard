@@ -94,6 +94,11 @@ Feature: Live Football World Cup Scoreboard
     When I update the score of the match to "Mexico" -3 - "Canada" 2
     Then an error should be raised with the message "Scores must not be negative."
 
+  Scenario: Handle a large number of matches
+    Given an empty scoreboard
+    When I start and update a large number of matches
+    Then the scoreboard should handle all matches without performance degradation
+
   Scenario: Update the score to zero
     Given a scoreboard with one match "Mexico" 3 - "Canada" 2
     When I update the score of the match to "Mexico" 0 - "Canada" 0
