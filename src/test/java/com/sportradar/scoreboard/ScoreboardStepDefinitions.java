@@ -53,4 +53,32 @@ public class ScoreboardStepDefinitions {
     public void the_scoreboard_should_be_empty() {
         assertEquals(0, scoreboard.getMatches().size());
     }
+
+    @Given("a scoreboard with multiple matches")
+    public void a_scoreboard_with_multiple_matches(io.cucumber.datatable.DataTable dataTable) {
+        // Write code here that turns the phrase above into concrete actions
+        // For automatic transformation, change DataTable to one of
+        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+        // Double, Byte, Short, Long, BigInteger or BigDecimal.
+        //
+        // For other transformations you can register a DataTableType.
+        throw new io.cucumber.java.PendingException();
+    }
+    @When("I get a summary of matches in progress")
+    public void i_get_a_summary_of_matches_in_progress() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("the summary should list matches ordered by total score in descending order")
+    public void the_summary_should_list_matches_ordered_by_total_score_in_descending_order() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("ties should be broken by the most recently started match")
+    public void ties_should_be_broken_by_the_most_recently_started_match() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
 }

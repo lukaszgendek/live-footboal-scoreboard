@@ -14,3 +14,12 @@ Feature: Live Football World Cup Scoreboard
     Given a scoreboard with one match "Mexico" 3 - "Canada" 2
     When I finish the match with home team "Mexico" and away team "Canada"
     Then the scoreboard should be empty
+
+  Scenario: Get a summary of matches in progress
+    Given a scoreboard with multiple matches
+      | homeTeam | awayTeam | homeScore | awayScore |
+      | Mexico   | Canada   | 0         | 5         |
+      | Spain    | Brazil   | 10        | 2         |
+    When I get a summary of matches in progress
+    Then the summary should list matches ordered by total score in descending order
+    And ties should be broken by the most recently started match
