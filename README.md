@@ -27,8 +27,6 @@ The application is structured into three main components:
 
 # Acceptance Criteria
 
-# Acceptance Criteria
-
 | Scenario | Initial Scenario | Action | Expected Result |
 |----------|------------------|--------|-----------------|
 | Start a new match | Empty scoreboard | Start a new match with home team ```Mexico``` and away team ```Canada``` | The scoreboard should contain one match, with the score ```Mexico``` ```0``` - ```Canada``` ```0```. |
