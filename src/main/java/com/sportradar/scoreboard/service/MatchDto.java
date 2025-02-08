@@ -1,7 +1,5 @@
 package com.sportradar.scoreboard.service;
 
-import com.sportradar.scoreboard.model.Match;
-
 public class MatchDto {
     private final String homeTeam;
     private final int homeScore;
