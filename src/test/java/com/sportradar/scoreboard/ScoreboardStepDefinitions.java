@@ -36,6 +36,7 @@ public class ScoreboardStepDefinitions {
     public void a_scoreboard_with_one_match(String homeTeam, int homeScore, String awayTeam, int awayScore) {
         scoreboard = new Scoreboard();
         scoreboard.startMatch(homeTeam, awayTeam);
+        scoreboard.updateMatch(homeTeam, homeScore, awayTeam, awayScore);
     }
 
     @When("I update the score of the match to {string} {int} - {string} {int}")
@@ -43,4 +44,14 @@ public class ScoreboardStepDefinitions {
         scoreboard.updateMatch(homeTeam, homeScore, awayTeam, awayScore);
     }
 
+    @When("I finish the match")
+    public void i_finish_the_match() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("the scoreboard should be empty")
+    public void the_scoreboard_should_be_empty() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 }
