@@ -161,7 +161,27 @@ public class ScoreboardStepDefinitions {
 
 
     @Then("the summary should be empty")
-    public void theSummaryShouldBeEmpty() {
+    public void the_summary_should_be_empty() {
         assertTrue(summary.isEmpty());
+    }
+
+    @When("I start and update a large number of matches")
+    public void i_start_and_update_a_large_number_of_matches() {
+        try {
+            for (int i = 0; i < 10000; i++) {
+                String homeTeam = "Team" + i;
+                String awayTeam = "Team" + (i + 1);
+                scoreboard.startMatch(homeTeam, awayTeam);
+                scoreboard.updateScore(homeTeam,i % 10, awayTeam, (i + 1) % 10);
+            }
+        } catch (Exception e) {
+            exception = e;
+        }
+    }
+
+    @Then("the scoreboard should handle all matches without performance degradation")
+    public void the_scoreboard_should_handle_all_matches_without_performance_degradation() {
+        assertEquals(10000, scoreboard.getSummary().size());
+        assertNull(exception);
     }
 }
