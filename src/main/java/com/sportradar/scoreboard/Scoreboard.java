@@ -43,7 +43,7 @@ public class Scoreboard {
 
     public List<Match> getSummary() {
         return getMatches().stream()
-                .sorted(Comparator.comparingInt(m -> m.getHomeScore() + m.getAwayScore()))
+                .sorted(Comparator.comparingInt(Match::getTotalScore))
                 .collect(
                         collectingAndThen(
                                 Collectors.toList(),
