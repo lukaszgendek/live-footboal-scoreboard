@@ -94,16 +94,21 @@ public class ScoreboardStepDefinitions {
         }
     }
 
-    @Then("the scoreboard should list the matches in the following order")
-    public void the_scoreboard_should_list_the_matches_in_the_following_order(io.cucumber.datatable.DataTable dataTable) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
-        throw new io.cucumber.java.PendingException();
+    @Then("the summary should list the matches in the following order")
+    public void the_summary_should_list_the_matches_in_the_following_order(io.cucumber.datatable.DataTable dataTable) {
+        summary = scoreboard.getSummary();
+        int i = 0;
+        for (Map<String, String> entry : dataTable.entries()) {
+            String homeTeam = entry.get("homeTeam");
+            String awayTeam = entry.get("awayTeam");
+            int homeScore = Integer.parseInt(entry.get("homeScore"));
+            int awayScore = Integer.parseInt(entry.get("awayScore"));
+            assertEquals(homeTeam, summary.get(i).getHomeTeam());
+            assertEquals(awayTeam, summary.get(i).getAwayTeam());
+            assertEquals(homeScore, summary.get(i).getHomeScore());
+            assertEquals(awayScore, summary.get(i).getAwayScore());
+            i++;
+        }
     }
 
 }

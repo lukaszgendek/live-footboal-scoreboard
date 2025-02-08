@@ -32,7 +32,7 @@ Feature: Live Football World Cup Scoreboard
       | Germany  | France   | 2         | 2         |
     When I start a new match with home team "Uruguay" and away team "Italy"
     And I update the score of the match to "Uruguay" 6 - "Italy" 6
-    Then the scoreboard should list the matches in the following order
+    Then the summary should list the matches in the following order
       | homeTeam | awayTeam | homeScore | awayScore |
       | Uruguay  | Italy    | 6         | 6         |
       | Spain    | Brazil   | 10        | 2         |
