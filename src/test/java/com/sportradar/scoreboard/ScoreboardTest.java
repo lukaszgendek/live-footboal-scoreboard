@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ScoreboardTest {
     @Test
     public void testThreadSafety() throws InterruptedException {
-        Scoreboard scoreboard = new Scoreboard();
+        ScoreboardService scoreboard = new ScoreboardService();
         int threadCount = 100;
         CountDownLatch latch = new CountDownLatch(threadCount);
         ExecutorService executorService = Executors.newFixedThreadPool(threadCount);

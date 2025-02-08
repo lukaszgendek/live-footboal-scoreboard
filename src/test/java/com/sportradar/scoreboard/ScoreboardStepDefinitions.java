@@ -10,13 +10,13 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreboardStepDefinitions {
-    private Scoreboard scoreboard;
+    private ScoreboardService scoreboard;
     private List<Match> summary;
     private Exception exception;
 
     @Given("an empty scoreboard")
     public void an_empty_scoreboard() {
-        scoreboard = new Scoreboard();
+        scoreboard = new ScoreboardService();
     }
 
     @When("I start a new match with home team {string} and away team {string}")
@@ -51,7 +51,7 @@ public class ScoreboardStepDefinitions {
 
     @Given("a scoreboard with one match {string} {int} - {string} {int}")
     public void a_scoreboard_with_one_match(String homeTeam, int homeScore, String awayTeam, int awayScore) {
-        scoreboard = new Scoreboard();
+        scoreboard = new ScoreboardService();
         scoreboard.startMatch(homeTeam, awayTeam);
         scoreboard.updateScore(homeTeam, homeScore, awayTeam, awayScore);
     }
@@ -81,7 +81,7 @@ public class ScoreboardStepDefinitions {
 
     @Given("a scoreboard with multiple matches")
     public void a_scoreboard_with_multiple_matches(io.cucumber.datatable.DataTable dataTable) {
-        scoreboard = new Scoreboard();
+        scoreboard = new ScoreboardService();
         for (Map<String, String> entry : dataTable.entries()) {
             String homeTeam = entry.get("homeTeam");
             String awayTeam = entry.get("awayTeam");

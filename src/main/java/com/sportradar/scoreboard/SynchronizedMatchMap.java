@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class ThreadSafeMatchMap {
+public class SynchronizedMatchMap {
     private final LinkedHashMap<String, Match> matches = new LinkedHashMap<>();
 
     public synchronized void put(String key, Function<Match, Match> validatorAndCreator) {
