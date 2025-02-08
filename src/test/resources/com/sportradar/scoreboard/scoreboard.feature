@@ -64,3 +64,17 @@ Feature: Live Football World Cup Scoreboard
     Given an empty scoreboard
     When I finish the match between "Mexico" and "Canada"
     Then an error should be raised with the message "Match between these teams does not exist."
+
+  Scenario: Handling invalid team names
+    Given an empty scoreboard
+    When I start a new match with home team "" and away team "Canada"
+    Then an error should be raised with the message "Team names must not be null or empty."
+
+    When I start a new match with home team "Mexico" and away team ""
+    Then an error should be raised with the message "Team names must not be null or empty."
+
+    When I start a new match with home team null and away team "Canada"
+    Then an error should be raised with the message "Team names must not be null or empty."
+
+    When I start a new match with home team "Mexico" and away team null
+    Then an error should be raised with the message "Team names must not be null or empty."
