@@ -48,3 +48,5 @@ Feature: Live Football World Cup Scoreboard
     Then the summary should list the matches in the following order
       | homeTeam | awayTeam | homeScore | awayScore |
       | Uruguay  | Italy    | 6         | 6         |
+
+# Edge cases
