@@ -24,6 +24,7 @@ public class Scoreboard {
 
     public void updateScore(String homeTeam, int homeScore, String awayTeam, int awayScore) {
         validateTeamNames(homeTeam, awayTeam);
+        validateScores(homeTeam, homeScore, awayTeam, awayScore);
         String key = generateKey(homeTeam, awayTeam);
         Match match = matches.get(key);
         if (match == null) {
@@ -66,4 +67,17 @@ public class Scoreboard {
             throw new IllegalArgumentException("Team names must not be null or empty.");
         }
     }
+    private void validateScores(String homeTeam, int homeScore, String awayTeam, int awayScore) {
+        if (homeScore < 0 || awayScore < 0) {
+            throw new IllegalArgumentException("Scores must not be negative.");
+        }
+        String key = generateKey(homeTeam, awayTeam);
+        Match match = matches.get(key);
+        if (match != null) {
+            if (homeScore < match.getHomeScore() || awayScore < match.getAwayScore()) {
+                throw new IllegalArgumentException("Scores must not be decreased.");
+            }
+        }
+    }
+
 }
