@@ -172,7 +172,7 @@ public class ScoreboardStepDefinitions {
                 String homeTeam = "Team" + i;
                 String awayTeam = "Team" + (i + 1);
                 scoreboard.startMatch(homeTeam, awayTeam);
-                scoreboard.updateScore(homeTeam,i % 10, awayTeam, (i + 1) % 10);
+                scoreboard.updateScore(homeTeam, i % 10, awayTeam, (i + 1) % 10);
             }
         } catch (Exception e) {
             exception = e;
@@ -183,5 +183,26 @@ public class ScoreboardStepDefinitions {
     public void the_scoreboard_should_handle_all_matches_without_performance_degradation() {
         assertEquals(10000, scoreboard.getSummary().size());
         assertNull(exception);
+    }
+
+    @When("I perform operations on the scoreboard")
+    public void i_perform_operations_on_the_scoreboard(io.cucumber.datatable.DataTable dataTable) {
+        List<List<String>> operations = dataTable.cells();
+        try {
+            for (List<String> row : operations) {
+                String operation = row.get(0);
+                String homeTeam = row.get(1);
+                String awayTeam = row.get(2);
+                if ("finishMatch".equals(operation)) {
+                    scoreboard.finishMatch(homeTeam, awayTeam);
+                } else if ("updateScore".equals(operation)) {
+                    int homeScore = Integer.parseInt(row.get(3));
+                    int awayScore = Integer.parseInt(row.get(4));
+                    scoreboard.updateScore(homeTeam, homeScore, awayTeam, awayScore);
+                }
+            }
+        } catch (Exception e) {
+            exception = e;
+        }
     }
 }
