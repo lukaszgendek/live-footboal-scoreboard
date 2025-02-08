@@ -26,7 +26,6 @@ public class ScoreboardStepDefinitions {
         } catch (IllegalArgumentException e) {
             exception = e;
         }
-
     }
 
     @Then("the scoreboard should contain one match with the score {string} {int} - {string} {int}")
@@ -49,7 +48,11 @@ public class ScoreboardStepDefinitions {
 
     @When("I update the score of the match to {string} {int} - {string} {int}")
     public void i_update_the_score_of_the_match_to(String homeTeam, int homeScore, String awayTeam, int awayScore) {
-        scoreboard.updateScore(homeTeam, homeScore, awayTeam, awayScore);
+        try {
+            scoreboard.updateScore(homeTeam, homeScore, awayTeam, awayScore);
+        } catch (IllegalArgumentException e) {
+            exception = e;
+        }
     }
 
     @When("I finish the match between {string} and {string}")
