@@ -30,4 +30,13 @@ public class Scoreboard {
         return homeTeam + SEPARATOR + awayTeam;
     }
 
+    public void finishMatch(String homeTeam, String awayTeam) {
+        String key = getKey(homeTeam, awayTeam);
+        Match match = matches.get(key);
+        if (match == null) {
+            throw new IllegalArgumentException("Match does not exist " + homeTeam + " vs " + awayTeam);
+        } else {
+            matches.remove(key);
+        }
+    }
 }

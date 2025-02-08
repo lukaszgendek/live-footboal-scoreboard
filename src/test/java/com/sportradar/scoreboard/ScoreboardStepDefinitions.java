@@ -45,14 +45,12 @@ public class ScoreboardStepDefinitions {
     }
 
     @When("I finish the match with home team {string} and away team {string}")
-    public void i_finish_the_match_with_home_team_and_away_team(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void i_finish_the_match_with_home_team_and_away_team(String homeTeam, String awayTeam) {
+        scoreboard.finishMatch(homeTeam, awayTeam);
     }
 
     @Then("the scoreboard should be empty")
     public void the_scoreboard_should_be_empty() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        assertEquals(0, scoreboard.getMatches().size());
     }
 }
