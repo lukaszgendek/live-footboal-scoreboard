@@ -28,13 +28,13 @@ public class ScoreboardStepDefinitions {
         }
     }
 
-    @When("I start a new match with home team null and away team {string}")
-    public void i_start_a_new_match_with_home_team_null_and_away_team(String awayTeam) {
+    @When("I start a new match with home team blank and away team {string}")
+    public void i_start_a_new_match_with_home_team_blank_and_away_team(String awayTeam) {
         i_start_a_new_match_with_home_team_and_away_team(null, awayTeam);
     }
 
-    @When("I start a new match with home team {string} and away team null")
-    public void i_start_a_new_match_with_home_team_and_away_team_null(String homeTeam) {
+    @When("I start a new match with home team {string} and away team blank")
+    public void i_start_a_new_match_with_home_team_and_away_team_blank(String homeTeam) {
         i_start_a_new_match_with_home_team_and_away_team(homeTeam, null);
     }
 
