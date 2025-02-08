@@ -12,5 +12,5 @@ Feature: Live Football World Cup Scoreboard
 
   Scenario: Finish an ongoing match
     Given a scoreboard with one match "Mexico" 3 - "Canada" 2
-    When I finish the match
+    When I finish the match with home team "Mexico" and away team "Canada"
     Then the scoreboard should be empty
