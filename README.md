@@ -10,9 +10,10 @@ The Scoreboard Application is designed to manage and display the scores of vario
 - Get a summary of all ongoing matches, sorted by total score in descending order
 
 ## Design
-The application is structured into two main components:
+The application is structured into three main components:
 1. **Model**: Contains the data structures for matches and a thread-safe map to manage them.
 2. **Service**: Contains the business logic for managing matches.
+3. **DTO (Data Transfer Object)**: Represents the data that is transferred between the service layer and the client.
 
 ### Model
 - **Match**: Represents a match between two teams with their respective scores.
@@ -20,6 +21,9 @@ The application is structured into two main components:
 
 ### Service
 - **ScoreboardService**: Contains the business logic for creating, updating, and finishing matches. It uses `MatchMap` to manage the matches.
+
+### DTO
+- **MatchDto**: Represents the data that is exposed to the client. It includes the home team, away team, home score, and away score.
 
 # Acceptance Criteria
 

@@ -1,6 +1,6 @@
 package com.sportradar.scoreboard.stepdefinitions;
 
-import com.sportradar.scoreboard.model.Match;
+import com.sportradar.scoreboard.service.MatchDto;
 import com.sportradar.scoreboard.service.ScoreboardService;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreboardSteps {
     private ScoreboardService service;
-    private List<Match> summary;
+    private List<MatchDto> summary;
     private Exception exception;
 
     @Given("an empty scoreboard")
@@ -42,9 +42,9 @@ public class ScoreboardSteps {
 
     @Then("the scoreboard should contain one match with the score {string} {int} - {string} {int}")
     public void the_scoreboard_should_contain_one_match_with_the_score(String homeTeam, int homeScore, String awayTeam, int awayScore) {
-        List<Match> matches = service.getMatches();
+        List<MatchDto> matches = service.getMatches();
         assertEquals(1, matches.size());
-        Match first = matches.get(0);
+        MatchDto first = matches.get(0);
         assertEquals(homeTeam, first.getHomeTeam());
         assertEquals(homeScore, first.getHomeScore());
         assertEquals(awayTeam, first.getAwayTeam());
@@ -108,11 +108,11 @@ public class ScoreboardSteps {
 
     @Then("ties should be broken by the most recently started match")
     public void ties_should_be_broken_by_the_most_recently_started_match() {
-        List<Match> matches = service.getMatches();
+        List<MatchDto> matches = service.getMatches();
         for (int i = 1; i < summary.size(); i++) {
             if (summary.get(i - 1).getTotalScore() == summary.get(i).getTotalScore()) {
-                Match first = summary.get(i - 1);
-                Match second = summary.get(i);
+                MatchDto first = summary.get(i - 1);
+                MatchDto second = summary.get(i);
                 assertTrue(matches.indexOf(first) > matches.indexOf(second), "if ties " +
                         "then first match in the summary should be created more recently than the second one");
             }

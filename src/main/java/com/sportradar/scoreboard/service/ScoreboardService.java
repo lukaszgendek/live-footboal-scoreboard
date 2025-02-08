@@ -39,13 +39,16 @@ public class ScoreboardService {
         });
     }
 
-    public List<Match> getMatches() {
-        return map.getAll();
+    public List<MatchDto> getMatches() {
+        return map.getAll().stream()
+                .map(ScoreboardService::mapMatch)
+                .collect(Collectors.toList());
     }
 
-    public List<Match> getSummary() {
-        return getMatches().stream()
+    public List<MatchDto> getSummary() {
+        return map.getAll().stream()
                 .sorted(Comparator.comparingInt(Match::getTotalScore))
+                .map(ScoreboardService::mapMatch)
                 .collect(
                         collectingAndThen(
                                 // Since LinkedHashMap maintains insertion order, we only need to reverse the list
@@ -76,6 +79,10 @@ public class ScoreboardService {
                 throw new IllegalArgumentException("Scores must not be decreased.");
             }
         }
+    }
+
+    private static MatchDto mapMatch(Match match) {
+        return new MatchDto(match.getHomeTeam(), match.getHomeScore(), match.getAwayTeam(), match.getAwayScore());
     }
 
 }
