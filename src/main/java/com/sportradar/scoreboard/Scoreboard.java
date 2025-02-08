@@ -10,6 +10,9 @@ public class Scoreboard {
     private final LinkedHashMap<String, Match> matches = new LinkedHashMap<>();
 
     public void startMatch(String homeTeam, String awayTeam) {
+        if (matches.containsKey(generateKey(homeTeam, awayTeam))) {
+            throw new IllegalArgumentException("Match between these teams is already in progress.");
+        }
         matches.put(generateKey(homeTeam, awayTeam), new Match(homeTeam,  0, awayTeam, 0));
     }
 
