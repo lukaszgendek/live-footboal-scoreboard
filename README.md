@@ -62,6 +62,46 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
 
 The following table [table](./acceptance_criteria.md) lists the acceptance criteria used for developing the application.
 
+## Vavr Immutable Collections
+
+### Use of Vavr's Immutable `LinkedHashMap`
+In an alternative implementation branch named `immutability_provided_by_vavr`, Vavr's immutable `LinkedHashMap` is utilizied to manage the matches. This approach simplifies the code and potentially improves performance by avoiding the need for copying the collection when returning from synchronized methods. Immutable collections inherently provide thread safety, which ensures that the internal state cannot be modified unexpectedly.
+
+#### Benefits:
+1. **Thread Safety**: Immutable collections naturally provide thread safety as they cannot be modified once created.
+2. **No Need for Copying**: Unlike mutable collections, there is no need to create a copy of the collection when returning it from synchronized methods.
+
+#### Example Implementation:
+```java name=src/main/java/com/yourcompany/project/model/MatchMap.java
+import io.vavr.collection.LinkedHashMap;
+import io.vavr.collection.Seq;
+import io.vavr.control.Option;
+
+import java.util.function.Consumer;
+import java.util.function.Function;
+
+import static io.vavr.collection.LinkedHashMap.empty;
+
+public class MatchMap {
+    private LinkedHashMap<String, Match> matches = empty();
+
+    public synchronized void put(String key, Function<Option<Match>, Match> matchInitializer) {
+        matches = matches.put(key, matchInitializer.apply(matches.get(key)));
+    }
+
+    public synchronized void remove(String key, Consumer<Option<Match>> matchValidator) {
+        matchValidator.accept(matches.get(key));
+        matches = matches.remove(key);
+    }
+
+    public synchronized Seq<Match> values() {
+        return matches.values();
+    }
+}
+
+## Conclusion
+Although Vavr's immutable collections offer several benefits, they are not as widely adopted as Java's standard collections. Therefore, this implementation is provided in a separate branch for experimentation and evaluation. Feel free to explore this branch and consider the trade-offs before integrating it into the main branch.
+
 ## How to Start
 ### Prerequisites
 - JDK 11 or higher
@@ -89,3 +129,5 @@ The following table [table](./acceptance_criteria.md) lists the acceptance crite
 Cucumber tests are used to ensure that the application behaves as expected. To run the Cucumber tests:
 ```sh
 mvn test -Dcucumber.options="--plugin pretty"
+
+
