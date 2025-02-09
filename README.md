@@ -41,7 +41,7 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
 ## Step-by-Step Process
 
 1. **Define Initial Acceptance Criteria**:
-   The initial acceptance criteria were defined to cover the basic functionality of the scoreboard. These criteria are documented in the [acceptance_criteria.md](./acceptance_criteria.md) file.
+   The initial acceptance criteria were defined to cover the basic functionality of the scoreboard. These criteria are documented in the [acceptance_criteria.md](./acceptance_criteria.md) file and also included in the [scoreboard.feature](./scoreboard.feature) file written in Gherkin language.
 
 2. **Create Cucumber Skeletons**:
    For each acceptance criterion, a corresponding Cucumber skeleton was created in the `ScoreboardSteps.java` file. These skeletons define the Given-When-Then structure for the tests.
@@ -50,12 +50,12 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
    The features were implemented to pass the acceptance tests. The implementation involved creating the necessary classes and methods in the `model`, `service`, and `dto` packages.
 
 4. **Formulate Edge Case Acceptance Criteria**:
-   After implementing the main features, additional acceptance criteria were formulated to handle edge cases and special scenarios. These criteria were added to the [acceptance_criteria.md](./acceptance_criteria.md) file.
-
-5. **Develop for Edge Cases**:
+   After implementing the main features, additional acceptance criteria were formulated to handle edge cases and special scenarios. These criteria were added to the [acceptance_criteria.md](./acceptance_criteria.md) file and the [scoreboard.feature](./scoreboard.feature) file.
+   
+6. **Develop for Edge Cases**:
    The application was further developed to handle the edge cases defined in the acceptance criteria. This involved updating the implementation and adding new tests.
 
-6. **Refactor and Optimize**:
+7. **Refactor and Optimize**:
    The code was refactored and optimized to ensure maintainability, performance, and readability. This included improving the design, removing redundancies, and enhancing performance.
 
 ## Acceptance Criteria
