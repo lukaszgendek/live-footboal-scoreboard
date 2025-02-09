@@ -142,6 +142,20 @@ Although Vavr's immutable collections offer several benefits, they are not as wi
     ```sh
     mvn test
     ```
+### Running the tests using docker-compose
+
+Use Docker Compose to build and run your tests in the defined environment.
+
+1. Build and run the containers
+```sh
+docker-compose up --build
+```
+2. Run the tests inside the app container
+```sh
+docker exec -it my-app mvn test
+```
+
+Self-contained tests run in a consistent environment every time. This approach eliminates issues related to differences in development environments and makes it easier to reproduce test results.
 
 ## Usage
 ### Starting a Match
