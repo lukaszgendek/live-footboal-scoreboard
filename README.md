@@ -72,7 +72,7 @@ In an alternative implementation branch named `immutability_provided_by_vavr`, V
 2. **No Need for Copying**: Unlike mutable collections, there is no need to create a copy of the collection when returning it from synchronized methods.
 
 #### Example Implementation:
-```java name=src/main/java/com/yourcompany/project/model/MatchMap.java
+```java name=src/main/java/com/sportradar/scoreboard/model/MatchMap.java
 import io.vavr.collection.LinkedHashMap;
 import io.vavr.collection.Seq;
 import io.vavr.control.Option;
@@ -98,7 +98,7 @@ public class MatchMap {
         return matches.values();
     }
 }
-
+````
 ## Conclusion
 Although Vavr's immutable collections offer several benefits, they are not as widely adopted as Java's standard collections. Therefore, this implementation is provided in a separate branch for experimentation and evaluation. Feel free to explore this branch and consider the trade-offs before integrating it into the main branch.
 
