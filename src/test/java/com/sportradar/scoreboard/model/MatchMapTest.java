@@ -45,7 +45,9 @@ public class MatchMapTest {
                     String teamB = "Team" + (index + 1);
                     String key = teamA + " vs " +
                             teamB;
-                    matchMap.put(key, existingMatch -> new Match(teamA, index % 10, teamB, (index + 1) % 10));
+                    Match newMatch = new Match(teamA, index % 10, teamB, (index + 1) % 10);
+                    matchMap.put(key, existingMatch -> newMatch);
+                    assertTrue(matchMap.values().contains(newMatch));
                     matchMap.remove(key, existingMatch -> {
                     });
                 } catch (Exception e) {
