@@ -14,18 +14,18 @@ public class ScoreboardService {
 
     public void startMatch(String homeTeam, String awayTeam) {
         validateTeamNames(homeTeam, awayTeam);
-        map.put(generateKey(homeTeam, awayTeam), existingMatch -> {
-            if (existingMatch != null)
+        map.put(generateKey(homeTeam, awayTeam), existingMatchOpt -> {
+            if (existingMatchOpt.isPresent()) {
                 throw new IllegalArgumentException("Match between these teams is already in progress.");
-            return new Match(homeTeam,  0, awayTeam, 0);
+            }
+            return new Match(homeTeam, 0, awayTeam, 0);
         });
     }
 
     public void updateScore(String homeTeam, int homeScore, String awayTeam, int awayScore) {
         validateTeamNames(homeTeam, awayTeam);
-        map.put(generateKey(homeTeam, awayTeam), existingMatch -> {
-            if (existingMatch == null)
-                throw new IllegalArgumentException("Match between these teams does not exist.");
+        map.put(generateKey(homeTeam, awayTeam), existingMatchOpt -> {
+            Match existingMatch = existingMatchOpt.orElseThrow(() -> new IllegalArgumentException("Match between these teams does not exist."));
             validateScores(existingMatch, homeScore, awayScore);
             return existingMatch.withHomeScore(homeScore).withAwayScore(awayScore);
         });
@@ -33,9 +33,10 @@ public class ScoreboardService {
 
     public void finishMatch(String homeTeam, String awayTeam) {
         validateTeamNames(homeTeam, awayTeam);
-        map.remove(generateKey(homeTeam, awayTeam), existingMatch -> {
-            if (existingMatch == null)
+        map.remove(generateKey(homeTeam, awayTeam), existingMatchOpt -> {
+            if (!existingMatchOpt.isPresent()) {
                 throw new IllegalArgumentException("Match between these teams does not exist.");
+            }
         });
     }
 
@@ -70,6 +71,7 @@ public class ScoreboardService {
             throw new IllegalArgumentException("Team names must not be null or empty.");
         }
     }
+
     private void validateScores(Match match, int homeScore, int awayScore) {
         if (homeScore < 0 || awayScore < 0) {
             throw new IllegalArgumentException("Scores must not be negative.");
