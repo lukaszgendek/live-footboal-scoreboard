@@ -1,24 +1,26 @@
 package com.sportradar.scoreboard.model;
 
-import java.util.*;
+import io.vavr.collection.LinkedHashMap;
+import io.vavr.collection.Seq;
+import io.vavr.control.Option;
+
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import static java.util.Optional.ofNullable;
+import static io.vavr.collection.LinkedHashMap.empty;
 
 public class MatchMap {
-    private final LinkedHashMap<String, Match> matches = new LinkedHashMap<>();
-
-    public synchronized void put(String key, Function<Optional<Match>, Match> matchInitializer) {
-        matches.put(key, matchInitializer.apply(ofNullable(matches.get(key))));
+    private LinkedHashMap<String, Match> matches = empty();
+    public synchronized void put(String key, Function<Option<Match>, Match> matchInitializer) {
+        matches = matches.put(key, matchInitializer.apply(matches.get(key)));
     }
 
-    public synchronized void remove(String key, Consumer<Optional<Match>> matchValidator) {
-        matchValidator.accept(ofNullable(matches.get(key)));
-        matches.remove(key);
+    public synchronized void remove(String key, Consumer<Option<Match>> matchValidator) {
+        matchValidator.accept(matches.get(key));
+        matches = matches.remove(key);
     }
 
-    public synchronized List<Match> values() {
-        return new ArrayList<>(matches.values());
+    public synchronized Seq<Match> values() {
+        return matches.values();
     }
 }
