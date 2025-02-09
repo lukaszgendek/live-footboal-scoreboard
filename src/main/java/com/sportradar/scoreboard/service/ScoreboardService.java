@@ -40,13 +40,13 @@ public class ScoreboardService {
     }
 
     public List<MatchDto> getMatches() {
-        return map.getAll().stream()
+        return map.values().stream()
                 .map(ScoreboardService::mapMatch)
                 .collect(Collectors.toList());
     }
 
     public List<MatchDto> getSummary() {
-        return map.getAll().stream()
+        return map.values().stream()
                 .sorted(Comparator.comparingInt(Match::getTotalScore))
                 .map(ScoreboardService::mapMatch)
                 .collect(

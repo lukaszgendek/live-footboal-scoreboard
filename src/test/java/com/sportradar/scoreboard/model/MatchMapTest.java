@@ -23,11 +23,11 @@ public class MatchMapTest {
     public void testPutAndRemove() {
         String key = "TeamA vs TeamB";
         matchMap.put(key, existingMatch -> new Match("TeamA", 0, "TeamB", 0));
-        assertEquals(1, matchMap.getAll().size());
+        assertEquals(1, matchMap.values().size());
 
         matchMap.remove(key, existingMatch -> {
         });
-        assertTrue(matchMap.getAll().isEmpty());
+        assertTrue(matchMap.values().isEmpty());
     }
 
     @Test
@@ -60,7 +60,8 @@ public class MatchMapTest {
         executorService.shutdown();
 
         assertTrue(completed, "Timeout occurred before all threads finished");
-        assertNull(exceptionRef.get(), "Exception occurred during concurrent operations: " + (exceptionRef.get() != null ? exceptionRef.get().getMessage() : ""));
-        assertTrue(matchMap.getAll().isEmpty());
+        Exception exception = exceptionRef.get();
+        assertNull(exception, "Exception occurred during concurrent operations: " + (exception != null ? exception.getMessage() : ""));
+        assertTrue(matchMap.values().isEmpty());
     }
 }
