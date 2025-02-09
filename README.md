@@ -162,7 +162,7 @@ Self-contained tests run in a consistent environment every time. This approach e
 To start a new match, use the createMatch method:
 
 ```java
-ScoreboardService service = new ScoreboardService();
+ScoreboardService service = ScoreboardServiceFactory.createScoreboardService();
 service.createMatch("TeamA", "TeamB");
 ```
 
