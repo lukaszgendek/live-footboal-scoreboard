@@ -184,7 +184,7 @@ service.finishMatch("TeamA", "TeamB");
 To get a summary of all ongoing matches, use the getMatches method:
 
 ```java
-List<MatchDto> summary = service.getMatches();
+List<MatchDto> summary = service.getSummary();
 for (MatchDto match : summary) {
     System.out.println(match);
 }
