@@ -41,7 +41,7 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
 ## Step-by-Step Process
 
 1. **Define Initial Acceptance Criteria**:
-   The initial acceptance criteria were defined to cover the basic functionality of the scoreboard. These criteria are documented in the `acceptance_criteria.md` file.
+   The initial acceptance criteria were defined to cover the basic functionality of the scoreboard. These criteria are documented in the [acceptance_criteria.md](./acceptance_criteria.md) file.
 
 2. **Create Cucumber Skeletons**:
    For each acceptance criterion, a corresponding Cucumber skeleton was created in the `ScoreboardSteps.java` file. These skeletons define the Given-When-Then structure for the tests.
