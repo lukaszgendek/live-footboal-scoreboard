@@ -25,9 +25,7 @@ The application is structured into three main components:
 ### DTO
 - **MatchDto**: Represents the data that is exposed to the client. It includes the home team, away team, home score, and away score.
 
-## How the Application Was Created
-
-### Acceptance Test-Driven Development (ATDD)
+## Acceptance Test-Driven Development (ATDD)
 The application was developed using the Acceptance Test-Driven Development (ATDD) methodology. ATDD is a collaborative approach that involves the following steps:
 
 1. **Define Acceptance Criteria**: The team collaboratively defines the acceptance criteria for each feature. These criteria serve as the basis for the acceptance tests.
@@ -40,7 +38,7 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
 
 5. **Refactor and Optimize**: The code is refactored and optimized to ensure maintainability, performance, and readability.
 
-### Step-by-Step Process
+## Step-by-Step Process
 
 1. **Define Initial Acceptance Criteria**:
    The initial acceptance criteria were defined to cover the basic functionality of the scoreboard. These criteria are documented in the `acceptance_criteria.md` file.
@@ -52,7 +50,7 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
    The features were implemented to pass the acceptance tests. The implementation involved creating the necessary classes and methods in the `model`, `service`, and `dto` packages.
 
 4. **Formulate Edge Case Acceptance Criteria**:
-   After implementing the main features, additional acceptance criteria were formulated to handle edge cases and special scenarios. These criteria were added to the `acceptance_criteria.md` file.
+   After implementing the main features, additional acceptance criteria were formulated to handle edge cases and special scenarios. These criteria were added to the [acceptance_criteria.md](./acceptance_criteria.md) file.
 
 5. **Develop for Edge Cases**:
    The application was further developed to handle the edge cases defined in the acceptance criteria. This involved updating the implementation and adding new tests.
@@ -60,7 +58,7 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
 6. **Refactor and Optimize**:
    The code was refactored and optimized to ensure maintainability, performance, and readability. This included improving the design, removing redundancies, and enhancing performance.
 
-### Acceptance Criteria
+## Acceptance Criteria
 
 The following table [table](./acceptance_criteria.md) lists the acceptance criteria used for developing the application.
 
@@ -72,11 +70,11 @@ The following table [table](./acceptance_criteria.md) lists the acceptance crite
 ### Running the Application
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourcompany/scoreboard.git
+    git clone https://github.com/lukaszgendek/live-footboal-scoreboard.git
     ```
 2. Navigate to the project directory:
     ```sh
-    cd scoreboard
+    cd live-footboal-scoreboard
     ```
 3. Build the project using Maven:
     ```sh
