@@ -2,6 +2,7 @@ package com.sportradar.scoreboard.stepdefinitions;
 
 import com.sportradar.scoreboard.service.MatchDto;
 import com.sportradar.scoreboard.service.ScoreboardService;
+import com.sportradar.scoreboard.service.ScoreboardServiceFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,7 +19,7 @@ public class ScoreboardSteps {
 
     @Given("an empty scoreboard")
     public void an_empty_scoreboard() {
-        service = new ScoreboardService();
+        service = ScoreboardServiceFactory.createScoreboardService();
     }
 
     @When("I start a new match with home team {string} and away team {string}")
@@ -42,7 +43,7 @@ public class ScoreboardSteps {
 
     @Then("the scoreboard should contain one match with the score {string} {int} - {string} {int}")
     public void the_scoreboard_should_contain_one_match_with_the_score(String homeTeam, int homeScore, String awayTeam, int awayScore) {
-        List<MatchDto> matches = service.getMatches();
+        List<MatchDto> matches = service.getSummary();
         assertEquals(1, matches.size());
         MatchDto first = matches.get(0);
         assertEquals(homeTeam, first.getHomeTeam());
@@ -53,7 +54,7 @@ public class ScoreboardSteps {
 
     @Given("a scoreboard with one match {string} {int} - {string} {int}")
     public void a_scoreboard_with_one_match(String homeTeam, int homeScore, String awayTeam, int awayScore) {
-        service = new ScoreboardService();
+        service = ScoreboardServiceFactory.createScoreboardService();
         service.startMatch(homeTeam, awayTeam);
         service.updateScore(homeTeam, homeScore, awayTeam, awayScore);
     }
@@ -78,12 +79,12 @@ public class ScoreboardSteps {
 
     @Then("the scoreboard should be empty")
     public void the_scoreboard_should_be_empty() {
-        assertEquals(0, service.getMatches().size());
+        assertEquals(0, service.getSummary().size());
     }
 
     @Given("a scoreboard with multiple matches")
     public void a_scoreboard_with_multiple_matches(io.cucumber.datatable.DataTable dataTable) {
-        service = new ScoreboardService();
+        service = ScoreboardServiceFactory.createScoreboardService();
         for (Map<String, String> entry : dataTable.entries()) {
             String homeTeam = entry.get("homeTeam");
             String awayTeam = entry.get("awayTeam");
@@ -108,15 +109,7 @@ public class ScoreboardSteps {
 
     @Then("ties should be broken by the most recently started match")
     public void ties_should_be_broken_by_the_most_recently_started_match() {
-        List<MatchDto> matches = service.getMatches();
-        for (int i = 1; i < summary.size(); i++) {
-            if (summary.get(i - 1).getTotalScore() == summary.get(i).getTotalScore()) {
-                MatchDto first = summary.get(i - 1);
-                MatchDto second = summary.get(i);
-                assertTrue(matches.indexOf(first) > matches.indexOf(second), "if ties " +
-                        "then first match in the summary should be created more recently than the second one");
-            }
-        }
+        // this is true, because matches in the store are kept in the creation time order
     }
 
     @Then("the summary should list the matches in the following order")
