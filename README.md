@@ -41,7 +41,7 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
 ## Step-by-Step Process
 
 1. **Define Initial Acceptance Criteria**:
-   The initial acceptance criteria were defined to cover the basic functionality of the scoreboard. These criteria are documented in the [scoreboard.feature](./scoreboard.feature) file written in Gherkin language and in the README.md file.
+   The initial acceptance criteria were defined to cover the basic functionality of the scoreboard. These criteria are documented in the [scoreboard.feature](./scoreboard.feature) file written in Gherkin language and in this README.md file.
 
 2. **Create Cucumber Skeletons**:
    For each acceptance criterion, a corresponding Cucumber skeleton was created in the `ScoreboardSteps.java` file. These skeletons define the Given-When-Then structure for the tests.
@@ -50,7 +50,7 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
    The features were implemented to pass the acceptance tests. The implementation involved creating the necessary classes and methods in the `model`, `service`, and `dto` packages.
 
 4. **Formulate Edge Case Acceptance Criteria**:
-   After implementing the main features, additional acceptance criteria were formulated to handle edge cases and special scenarios. These criteria were added to the [scoreboard.feature](./scoreboard.feature) file.
+   After implementing the main features, additional acceptance criteria were formulated to handle edge cases and special scenarios. These criteria were added to the [scoreboard.feature](./scoreboard.feature) file and here to the README.md file.
    
 6. **Develop for Edge Cases**:
    The application was further developed to handle the edge cases defined in the acceptance criteria. This involved updating the implementation and adding new tests.
