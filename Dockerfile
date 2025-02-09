@@ -13,5 +13,12 @@ RUN apt-get update && apt-get install -y maven
 # Package the application
 RUN mvn clean package
 
-# Run the tests
-CMD ["mvn", "test"]
+# Copy the entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Set the entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Default command to keep the container running
+CMD ["tail", "-f", "/dev/null"]
