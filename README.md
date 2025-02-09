@@ -62,43 +62,10 @@ The application was developed using the Acceptance Test-Driven Development (ATDD
 
 The following table [table](./acceptance_criteria.md) lists the acceptance criteria used for developing the application.
 
-## Usage
-### Starting a Match
-To start a new match, use the createMatch method:
-
-```java
-ScoreboardService service = new ScoreboardService();
-service.createMatch("TeamA", "TeamB");
-```
-
-### Updating Scores
-To update the scores of an ongoing match, use the updateScore method:
-
-```java
-service.updateScore("TeamA", "TeamB", 3, 2);
-```
-
-### Finishing a Match
-To finish an ongoing match, use the finishMatch method:
-
-```java
-service.finishMatch("TeamA", "TeamB");
-```
-
-### Getting Match Summary
-To get a summary of all ongoing matches, use the getMatches method:
-
-```java
-List<MatchDto> summary = service.getMatches();
-for (MatchDto match : summary) {
-    System.out.println(match);
-}
-```
-
 ## Vavr Immutable Collections
 
 ### Use of Vavr's Immutable `LinkedHashMap`
-In an alternative implementation branch named `immutability_provided_by_vavr`, Vavr's immutable `LinkedHashMap` is utilizied to manage the matches. This approach simplifies the code and potentially improves performance by avoiding the need for copying the collection when returning from synchronized methods. Immutable collections inherently provide thread safety, which ensures that the internal state cannot be modified unexpectedly.
+In an alternative implementation branch named [immutability_provided_by_vavr](tree/immutability_provided_by_vavr), Vavr's immutable `LinkedHashMap` is utilizied to manage the matches. This approach simplifies the code and potentially improves performance by avoiding the need for copying the collection when returning from synchronized methods. Immutable collections inherently provide thread safety, which ensures that the internal state cannot be modified unexpectedly.
 
 #### Benefits:
 1. **Thread Safety**: Immutable collections naturally provide thread safety as they cannot be modified once created.
@@ -132,7 +99,7 @@ public class MatchMap {
     }
 }
 ````
-## Conclusion
+### Conclusion
 Although Vavr's immutable collections offer several benefits, they are not as widely adopted as Java's standard collections. Therefore, this implementation is provided in a separate branch for experimentation and evaluation. Feel free to explore this branch and consider the trade-offs before integrating it into the main branch.
 
 ## How to Start
@@ -158,9 +125,37 @@ Although Vavr's immutable collections offer several benefits, they are not as wi
     mvn test
     ```
 
-### Running Cucumber Tests
-Cucumber tests are used to ensure that the application behaves as expected. To run the Cucumber tests:
-```sh
-mvn test -Dcucumber.options="--plugin pretty"
+## Usage
+### Starting a Match
+To start a new match, use the createMatch method:
+
+```java
+ScoreboardService service = new ScoreboardService();
+service.createMatch("TeamA", "TeamB");
+```
+
+### Updating Scores
+To update the scores of an ongoing match, use the updateScore method:
+
+```java
+service.updateScore("TeamA", "TeamB", 3, 2);
+```
+
+### Finishing a Match
+To finish an ongoing match, use the finishMatch method:
+
+```java
+service.finishMatch("TeamA", "TeamB");
+```
+
+### Getting Match Summary
+To get a summary of all ongoing matches, use the getMatches method:
+
+```java
+List<MatchDto> summary = service.getMatches();
+for (MatchDto match : summary) {
+    System.out.println(match);
+}
+```
 
 
