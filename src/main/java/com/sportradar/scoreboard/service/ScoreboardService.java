@@ -8,10 +8,21 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.collectingAndThen;
 
+/**
+ * Service class to manage scoreboard operations such as creating, updating,
+ * and finishing matches. Returns a summary of all ongoing matches
+ */
 public class ScoreboardService {
     private static final String SEPARATOR = "|";
     private final MatchMap map = new MatchMap();
 
+    /**
+     * Creates a new match between the specified home team and away team.
+     *
+     * @param homeTeam the name of the home team.
+     * @param awayTeam the name of the away team.
+     * @throws IllegalArgumentException if the match already exists.
+     */
     public void startMatch(String homeTeam, String awayTeam) {
         validateTeamNames(homeTeam, awayTeam);
         map.put(generateKey(homeTeam, awayTeam), existingMatchOpt -> {
@@ -22,6 +33,16 @@ public class ScoreboardService {
         });
     }
 
+    /**
+     * Updates the score of an existing match between the specified home team
+     * and away team.
+     *
+     * @param homeTeam the name of the home team.
+     * @param awayTeam the name of the away team.
+     * @param homeScore the new score for the home team.
+     * @param awayScore the new score for the away team.
+     * @throws IllegalArgumentException if the match does not exist.
+     */
     public void updateScore(String homeTeam, int homeScore, String awayTeam, int awayScore) {
         validateTeamNames(homeTeam, awayTeam);
         map.put(generateKey(homeTeam, awayTeam), existingMatchOpt -> {
@@ -31,6 +52,13 @@ public class ScoreboardService {
         });
     }
 
+    /**
+     * Finishes an existing match between the specified home team and away team.
+     *
+     * @param homeTeam the name of the home team.
+     * @param awayTeam the name of the away team.
+     * @throws IllegalArgumentException if the match does not exist.
+     */
     public void finishMatch(String homeTeam, String awayTeam) {
         validateTeamNames(homeTeam, awayTeam);
         map.remove(generateKey(homeTeam, awayTeam), existingMatchOpt -> {
@@ -46,6 +74,11 @@ public class ScoreboardService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Returns a summary of all ongoing matches.
+     *
+     * @return a list of MatchDto representing the ongoing matches.
+     */
     public List<MatchDto> getSummary() {
         return map.values().stream()
                 .sorted(Comparator.comparingInt(Match::getTotalScore))
