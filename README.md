@@ -104,7 +104,7 @@ Although Vavr's immutable collections offer several benefits, they are not as wi
 
 ## How to Start
 ### Prerequisites
-- JDK 11 or higher
+- JDK 8 or higher
 - Maven 3.6.3 or higher
 
 ### Running the Application
