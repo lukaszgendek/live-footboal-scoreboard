@@ -20,7 +20,24 @@ The application is structured into three main components:
 - **MatchMap**: A thread-safe map that manages matches. It ensures that all operations on the map are synchronized.
 
 ### Service
-- **ScoreboardService**: Contains the business logic for creating, updating, and finishing matches. It uses `MatchMap` to manage the matches.
+-- **ScoreboardService Interface**
+   - Defines the contract for the scoreboard service.
+   - Ensures that any implementation of the scoreboard service adheres to the specified methods.
+   - Allows for easy swapping of different implementations without changing the client code.
+-- **ScoreboardServiceImpl Class**
+   - Implements the ```ScoreboardService``` interface.
+   - Provides concrete implementations for managing matches, including creating, updating, and finishing matches.
+   - Uses a ```MatchMap``` to store and manage match data.
+-- **ScoreboardServiceFactory Class**
+   - Provides a method to create instances of the ```ScoreboardService``` interface.
+   - Encapsulates the creation logic, allowing for easy modification of the instantiation process.
+   - Promotes the use of the interface rather than the implementation class directly.
+
+#### Advantages
+- **Separation of Concerns**: The interface defines the contract, while the implementation class provides the concrete behavior. The factory encapsulates the instantiation logic.
+- **Flexibility**: Easily swap out the implementation of the ```ScoreboardService``` without changing the client code.
+- **Testability**: Facilitate unit testing by allowing mock implementations of the ```ScoreboardService``` interface.
+- **Maintainability**: Clear separation of responsibilities makes the codebase easier to understand and maintain.
 
 ### DTO
 - **MatchDto**: Represents the data that is exposed to the client. It includes the home team, away team, home score, and away score.
