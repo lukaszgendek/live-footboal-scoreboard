@@ -65,6 +65,9 @@ The following table [table](./acceptance_criteria.md) lists the acceptance crite
 ## Vavr Immutable Collections
 
 ### Use of Vavr's Immutable `LinkedHashMap`
+
+https://github.com/lukaszgendek/live-footboal-scoreboard/compare/immutability_provided_by_vavr...main
+
 In an alternative implementation branch named [immutability_provided_by_vavr](/lukaszgendek/live-footboal-scoreboard/tree/immutability_provided_by_vavr), Vavr's immutable `LinkedHashMap` is utilizied to manage the matches. This approach simplifies the code and potentially improves performance by avoiding the need for copying the collection when returning from synchronized methods. Immutable collections inherently provide thread safety, which ensures that the internal state cannot be modified unexpectedly.
 
 #### Benefits:
